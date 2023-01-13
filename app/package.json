@@ -35,6 +35,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-do-expressions": "^7.18.6",
     "@types/bcrypt": "^5.0.0",
+    "@types/cookie": "^0.5.1",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/react": "^18.0.26",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
@@ -53,6 +55,6 @@
     "ts-node": "^10.9.1"
   },
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts" 
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
