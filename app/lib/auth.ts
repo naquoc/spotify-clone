@@ -36,3 +36,8 @@ export const validateRoute = (handler: any) => {
   }
 
 }
+
+export const validateToken = (token: any) => {
+  const user = jwt.verify(token, 'hello') as JwtPayload
+  return user
+}
