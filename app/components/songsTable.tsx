@@ -2,6 +2,7 @@ import { Box, Table, Thead, Td, Tr, Tbody, Th, IconButton } from "@chakra-ui/rea
 import { BsFillPlayFill } from 'react-icons/bs'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { FC } from "react";
+import { formatDate, formatTime } from "../lib/formatter";
 
 const SongsTable: FC<any> = ({ songs }) => {
   return (
@@ -27,6 +28,24 @@ const SongsTable: FC<any> = ({ songs }) => {
               </Th>
             </Tr>
           </Thead>
+          <Tbody>
+            {songs.map((song: any, i: number) => {
+              <Tr sx={{
+                transition: 'all .3s',
+                '&:hover': {
+                  bg: 'rgba(255, 255, 255, 0.1)'
+                }
+              }}
+                key={song.id}
+                cursor='cursor'
+              >
+                <Td>{i + 1}</Td>
+                <Td>{song.name}</Td>
+                <Td>{formatDate(song.createdAt)}</Td>
+                <Td>{formatTime(song.duration)}</Td>
+              </Tr>
+            })}
+          </Tbody>
         </Table>
       </Box>
     </Box>
