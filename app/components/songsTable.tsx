@@ -3,8 +3,17 @@ import { BsFillPlayFill } from 'react-icons/bs'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { FC } from "react";
 import { formatDate, formatTime } from "../lib/formatter";
+import { useStoreActions } from "easy-peasy";
 
 const SongsTable: FC<any> = ({ songs }) => {
+  const playSongs = useStoreActions((store: any) => store.changeActiveSongs)
+  const setActiveSong = useStoreActions((store: any) => store.changeActiveSong)
+
+  const handlePlay = (activeSong?: any) => {
+    setActiveSong(activeSong || songs[0])
+    playSongs(songs)
+  }
+
   return (
     <Box bg='transparent' color='white'>
       <Box padding='10px' marginBottom='20px'>
@@ -15,6 +24,7 @@ const SongsTable: FC<any> = ({ songs }) => {
             aria-label="play button"
             size='lg'
             isRound
+            onClick={() => handlePlay()}
           />
         </Box>
         <Table variant='unstyled'>
@@ -29,7 +39,7 @@ const SongsTable: FC<any> = ({ songs }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {songs.map((song: any, i: number) => {
+            {songs.map((song: any, i: number) => (
               <Tr sx={{
                 transition: 'all .3s',
                 '&:hover': {
@@ -37,14 +47,15 @@ const SongsTable: FC<any> = ({ songs }) => {
                 }
               }}
                 key={song.id}
-                cursor='cursor'
+                cursor='pointer'
+                onClick={() => handlePlay(song)}
               >
                 <Td>{i + 1}</Td>
                 <Td>{song.name}</Td>
                 <Td>{formatDate(song.createdAt)}</Td>
                 <Td>{formatTime(song.duration)}</Td>
               </Tr>
-            })}
+            ))}
           </Tbody>
         </Table>
       </Box>
