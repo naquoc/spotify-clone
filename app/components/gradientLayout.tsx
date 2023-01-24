@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Image } from '@chakra-ui/react'
-import { FC } from 'react'
+import React, { FC } from 'react'
 
 type GradientLayoutProps = {
   color: string,

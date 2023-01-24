@@ -2,8 +2,8 @@ import { Box, Table, Thead, Td, Tr, Tbody, Th, IconButton } from "@chakra-ui/rea
 import { BsFillPlayFill } from 'react-icons/bs'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { FC } from "react";
-import { formatDate, formatTime } from "../lib/formatter";
 import { useStoreActions } from "easy-peasy";
+import { formatDate, formatTime } from "../lib/formatter";
 
 const SongsTable: FC<any> = ({ songs }) => {
   const playSongs = useStoreActions((store: any) => store.changeActiveSongs)

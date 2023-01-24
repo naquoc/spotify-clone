@@ -1,8 +1,8 @@
 import { FC } from "react"
-import GradientLayout from "../components/gradientLayout"
-import prisma from "../lib/prisma"
 import { Box, Image, Text, Flex } from '@chakra-ui/react'
+import prisma from "../lib/prisma"
 import { useMe } from "../lib/hooks"
+import GradientLayout from "../components/gradientLayout"
 
 const Home: FC<any> = ({ artists }) => {
   const { user } = useMe()

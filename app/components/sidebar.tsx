@@ -9,7 +9,6 @@ import {
   Divider,
   LinkBox,
   LinkOverlay,
-  Center,
 } from '@chakra-ui/layout'
 
 import {

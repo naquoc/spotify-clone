@@ -1,6 +1,6 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../lib/prisma";
 import { validateRoute } from "../../lib/auth";
-import { NextApiRequest, NextApiResponse } from "next";
 
 export default validateRoute(async (req: NextApiRequest, res: NextApiResponse, user: any) => {
   const playlists = await prisma.playlist.findMany({

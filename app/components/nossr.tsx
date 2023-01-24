@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
-import React, { FC } from "react";
+import { FC } from "react";
 
 const NoSSR: FC<any> = (props) => (
-  <React.Fragment>{props.children}</React.Fragment>
+  <div>{props.children}</div>
 )
 
 export default dynamic(() => Promise.resolve(NoSSR), { ssr: false })
