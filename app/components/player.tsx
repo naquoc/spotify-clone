@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 
 import ReactHowler from 'react-howler'
-import { useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import {
   MdShuffle,
   MdSkipPrevious,
@@ -25,7 +25,7 @@ import {
 import { useStoreActions } from 'easy-peasy'
 import { formatTime } from '../lib/formatter'
 
-const Player = ({ songs, activeSong }) => {
+const Player: FC<any> = ({ songs, activeSong }) => {
   const [playing, setPlaying] = useState(true)
   const [index, setIndex] = useState(songs.findIndex((s) => s.id === activeSong.id))
   const [seek, setSeek] = useState(0.0)
@@ -38,11 +38,13 @@ const Player = ({ songs, activeSong }) => {
   const setActiveSong = useStoreActions((store: any) => store.changeActiveSong)
 
   useEffect(() => {
-    let timerId
+    let timerId: any
     if (playing && !isSeeking) {
       const f = () => {
-        setSeek(soundRef.current.seek())
-        timerId = requestAnimationFrame(f)
+        if (soundRef.current) {
+          setSeek(soundRef.current.seek())
+          timerId = requestAnimationFrame(f)
+        }
       }
       timerId = requestAnimationFrame(f)
       return () => cancelAnimationFrame(timerId)
@@ -61,7 +63,7 @@ const Player = ({ songs, activeSong }) => {
   }, [repeat])
 
   const prevSong = () => {
-    setIndex((state) => {
+    setIndex((state: any) => {
       return state ? state - 1 : songs.length - 1
     })
   }
@@ -83,21 +85,27 @@ const Player = ({ songs, activeSong }) => {
 
   const onEnd = () => {
     if (repeatRef.current) {
-      setSeek(0)
-      soundRef.current.seek(0)
+      if (soundRef.current) {
+        setSeek(0)
+        soundRef.current.seek(0)
+      }
     } else {
       nextSong()
     }
   }
 
   const onLoad = () => {
-    const songDuration = soundRef.current.duration()
-    setDuration(songDuration)
+    if (soundRef.current) {
+      const songDuration = soundRef.current.duration()
+      setDuration(songDuration)
+    }
   }
 
   const onSeek = (e: any) => {
-    setSeek(parseFloat(e[0]))
-    soundRef.current.seek(e[0])
+    if (soundRef.current) {
+      setSeek(parseFloat(e[0]))
+      soundRef.current.seek(e[0])
+    }
   }
 
   return (
