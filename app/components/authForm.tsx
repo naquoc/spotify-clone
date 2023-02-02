@@ -1,8 +1,8 @@
-import { Box, Flex, Input, Button } from '@chakra-ui/react'
+import { Box, Flex, Input, Button, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import NextImage from 'next/image'
 import { FC, useState } from 'react'
 import { auth } from '../lib/mutation'
+import { GiMusicalNotes } from 'react-icons/gi'
 
 const AuthForm: FC<{ mode: 'signin' | 'signup' }> = ({ mode }) => {
   const [email, setEmail] = useState('')
@@ -23,7 +23,12 @@ const AuthForm: FC<{ mode: 'signin' | 'signup' }> = ({ mode }) => {
   return (
     <Box height="100vh" width='100vw' bg='black' color='white'>
       <Flex justify='center' align='center' height='100px' borderBottom='white 1px solid'>
-        <NextImage src='/spotify.svg' alt='logo' height={60} width={120} priority />
+        <Flex align='center'>
+          <Box fontSize='36px' mr='2'>
+            <GiMusicalNotes />
+          </Box>
+          <Text as='b' fontSize='36px'>Musicapp</Text>
+        </Flex>
       </Flex>
       <Flex justify='center' align='center' height='calc(100vh - 100px)'>
         <Box padding='50px' bg='gray.900' borderRadius='6px'>

@@ -9,6 +9,8 @@ import {
   Divider,
   LinkBox,
   LinkOverlay,
+  Flex,
+  Text,
 } from '@chakra-ui/layout'
 
 import {
@@ -19,6 +21,7 @@ import {
   MdFavorite,
 } from 'react-icons/md'
 import { usePlaylist } from '../lib/hooks'
+import { GiMusicalNotes } from 'react-icons/gi'
 
 const navMenu = [
   {
@@ -56,9 +59,12 @@ const Sidebar = () => {
   return (
     <Box width='100%' height='calc(100vh - 100px)' bg='black' paddingX='5px' color='gray'>
       <Box paddingY='20px' height='100%'>
-        <Box width='120px' marginBottom='20px' paddingX='20px'>
-          <NextImage src="/spotify.svg" alt='logo' height={60} width={120} priority />
-        </Box>
+        <Flex width='120px' marginBottom='20px' paddingX='20px'>
+          <Box fontSize='24px' mr='2'>
+            <GiMusicalNotes />
+          </Box>
+          <Text as='b'>Musicapp</Text>
+        </Flex>
         <Box marginBottom='20px'>
           <List spacing={2}>
             {navMenu.map(menu => (
